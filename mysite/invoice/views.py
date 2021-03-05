@@ -6,15 +6,12 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from invoice.models import Invoice,InvoiceLine
 from django.db import transaction
-from datetime import datetime
 from django.contrib.auth.hashers import make_password
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import ListView,FormView
+from django.views.generic import ListView
 from django.views.generic.edit import CreateView 
 from invoice.forms import InvoiceForm,InvoiceLineForm,InvoiceLineFormSet
-from django.forms import formset_factory
 from django.core.files.storage import FileSystemStorage
-from django.http import HttpResponse
 from django.template.loader import render_to_string
 from weasyprint import HTML
 import os
@@ -22,9 +19,6 @@ from django.conf import settings
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.core.mail import EmailMessage
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 
 
