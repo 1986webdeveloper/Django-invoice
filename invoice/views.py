@@ -66,7 +66,8 @@ class InvoiceCreateView(FormView):
                 invoice_line_obj = form.save(commit = False)
                 invoice_line_obj.invoice_id = invoice_obj.id
                 invoice_line_obj.save()
-                make_invoice_file(self.request,invoice_obj.id)
+            
+            make_invoice_file(self.request,invoice_obj.id)
             return HttpResponseRedirect('/invoices/')
 
 class InvoiceDetailView(View):
@@ -112,7 +113,6 @@ class DownloadInvoiceView(View):
                 response['Content-Disposition'] = 'attachment; filename= "{}"'.format(file_name) 
                 return response
 
-
 class InvoiceDeleteView(View):
 
     @method_decorator(csrf_exempt)
@@ -154,6 +154,7 @@ class LoginView(View):
 
         if user is not None:
             if user.is_active:
+                print(user,"user")
                 login(request, user)
                 return HttpResponseRedirect('/invoices') 
         else:
