@@ -1,0 +1,5 @@
+Django
+django-crispy-forms
+Pillow
+psycopg2-binary
+WeasyPrint
