@@ -5,12 +5,13 @@
 <div class="container-xl">
     <div class="table-responsive">
         {% for message in messages %}
-            <div class="alert alert-{% if message.tags == 'error'%}danger{% else %}success{% endif %}" id="message_container">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <p style="text-align: center;">{{ message | safe }} </p>
-            </div>  
+        <div class="alert alert-{% if message.tags == 'error'%}danger{% else %}success{% endif %}"
+             id="message_container">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <p style="text-align: center;">{{ message | safe }} </p>
+        </div>
         {% endfor %}
         <div class="table-wrapper">
             <div class="table-title">
@@ -23,38 +24,45 @@
             {% csrf_token %}
             <table class="table table-striped table-hover">
                 <thead>
-                    <tr>
-                        <th style="width: 14px">Index</th>						
-                        <th style="width: 40px">Invoice no</th>
-                        <th style="width: 70px">Invoice date</th>
-                        <th style="width: 100px">Due date</th>
-                        <th style="width: 100px">Total($)</th>
-                        <th style="width: 155px">Action</th>
-                    </tr>
+                <tr>
+                    <th style="width: 14px">Index</th>
+                    <th style="width: 40px">Invoice no</th>
+                    <th style="width: 70px">Invoice date</th>
+                    <th style="width: 100px">Due date</th>
+                    <th style="width: 100px">Total($)</th>
+                    <th style="width: 155px">Action</th>
+                </tr>
                 </thead>
                 <tbody>
-                	{% for data in page_obj %}
-	                    <tr>
-	                        <td>{{page_obj.start_index|add:forloop.counter0 }}</td>                
-	                        <td><a href="{% url 'invoice_detail' data.id%}">{{data.invoice_num}}</a></td>
-	                        <td>{{data.invoice_date|date:"Y-m-d"}}</td>
-	                        <td>{{data.due_date|date:"Y-m-d"}}</td>
-	                        <td>{% if data.total != None %}{{data.total}}{% else %}0.000{% endif %}</td>
-                            <td>
-                                <a href="{% url 'send_mail' data.id %}"><button title="Send mail"><i class="fa fa-envelope" aria-hidden="true"></i></button></a>
-                                <a href="{% url 'download_invoice' data.id %}"><button title="Download invoice"><i class="fa fa-download" aria-hidden="true"></i></button></a>
-                                <a href="{% url 'delete_invoice' data.id %}"><button title="Delete Invoice"><i class="fa fa-trash" aria-hidden="true"></i></button></a>
-                            </td>
-	                    </tr>
-                   	{% endfor %}
-            	</tbody>
+                {% for data in page_obj %}
+                <tr>
+                    <td>{{page_obj.start_index|add:forloop.counter0 }}</td>
+                    <td><a href="{% url 'invoice_detail' data.id%}">{{data.invoice_num}}</a></td>
+                    <td>{{data.invoice_date|date:"Y-m-d"}}</td>
+                    <td>{{data.due_date|date:"Y-m-d"}}</td>
+                    <td>{% if data.total != None %}{{data.total}}{% else %}0.000{% endif %}</td>
+                    <td>
+                        <a href="{% url 'send_mail' data.id %}">
+                            <button title="Send mail"><i class="fa fa-envelope" aria-hidden="true"></i></button>
+                        </a>
+                        <a href="{% url 'download_invoice' data.id %}">
+                            <button title="Download invoice"><i class="fa fa-download" aria-hidden="true"></i></button>
+                        </a>
+                        <a href="{% url 'delete_invoice' data.id %}">
+                            <button title="Delete Invoice"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
             </table>
         </div>
     </div>
-</div>  
+</div>
 <script type="text/javascript">
     setTimeout(function(){ 
         document.getElementById("message_container").style.display = "none"; 
     }, 5000);
+
 </script>
 {% endblock %}

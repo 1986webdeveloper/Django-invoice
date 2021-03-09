@@ -186,14 +186,14 @@
           <th><span>Bill To</span></th>
         </tr>
         <tr>
-          <td>{{invoice_data.billing_address}}</td>
+          <td>{% if invoice_data.billing_address %}{{invoice_data.billing_address}}{% endif %}</td>
         </tr>
 
         <tr>
           <th><span>Ship To</span></th>
         </tr>
         <tr>
-          <td>{{invoice_data.shipping_address}}</td>
+          <td>{% if invoice_data.shipping_address %}{{invoice_data.shipping_address}}{% endif %}</td>
         </tr>
       </table>
 
