@@ -1,0 +1,5 @@
+Django == 2.2.13
+django-crispy-forms == 1.11.1
+Pillow ==8.0.1
+psycopg2-binary == 2.8.6
+WeasyPrint == 52.3
