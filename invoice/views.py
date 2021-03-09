@@ -88,7 +88,7 @@ class SendMailView(View):
         invoice_id = int(self.kwargs['invoice_id'])
         invoice_data = Invoice.objects.filter(id = invoice_id).values('invoice_num').first()
         file_name = 'INV'+invoice_data['invoice_num']
-        mail = EmailMessage("Thanks to download mail", "This is A your message", settings.EMAIL_HOST_USER, [self.request.user])
+        mail = EmailMessage("Thank you for invoicing with us!", "A new invoice has been created on your account. You may find a PDF of your invoice attached.", settings.EMAIL_HOST_USER, [self.request.user])
         file_path = os.path.join(settings.MEDIA_ROOT,'invoice_pdf',file_name)
         if os.path.exists(file_path):
             fs = FileSystemStorage(file_path)
